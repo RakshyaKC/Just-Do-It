@@ -2,6 +2,8 @@
 
 Rails.application.routes.draw do
   # RESTful routes
+  resources :videos, only: %i[show update]
+  # Users can only see specific video and update that video as watched.
   resources :examples, except: %i[new edit]
 
   # Custom routes
