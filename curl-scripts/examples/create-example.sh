@@ -12,3 +12,6 @@ curl "http://localhost:4741/examples" \
   }'
 
 echo
+
+# http://localhost:4741/examples will have the resource name instead of examples!
+# column name is the text

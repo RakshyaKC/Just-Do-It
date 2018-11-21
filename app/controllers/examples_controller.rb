@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class ExamplesController < OpenReadController
+  # OpenReadController allows anyone to read, update or destroy the examples
+  # database.
+  # ProtectedController will hide all HTTP requests to inauthenticated users.
   before_action :set_example, only: %i[update destroy]
+  # set_example is a method defined below.
 
   # GET /examples
   # GET /examples.json
@@ -20,8 +24,12 @@ class ExamplesController < OpenReadController
   # POST /examples
   # POST /examples.json
   def create
+    # TOKEN looks up current_user whether the parent class is OpenReadController
+    # or ProtectedController
+    # we want to use current_user to build our resource
+    # .build is same as new
     @example = current_user.examples.build(example_params)
-
+    # => example with user_id automatically filled in. User_id = current_user_id
     if @example.save
       render json: @example, status: :created
     else
@@ -49,6 +57,7 @@ class ExamplesController < OpenReadController
 
   def set_example
     @example = current_user.examples.find(params[:id])
+    # finding only examples created by the current_user
   end
 
   def example_params
