@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class VideosController < ApplicationController
-  before_action :set_video, only: [:show, :update, :destroy]
+  before_action :set_video, only: %i[show update destroy]
 
   # GET /videos
   def index
@@ -46,6 +48,10 @@ class VideosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def video_params
+<<<<<<< HEAD
       params.require(:video).permit(:Fitness_level, :Time_length)
+=======
+      params.require(:video).permit(:title, :length_in_min, :url, :fitness)
+>>>>>>> feature
     end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class VideoSerializer < ActiveModel::Serializer
-  attributes :id, :Fitness_level, :Time_length
+  attributes :id, :title, :length_in_min, :fitness, :url
 end

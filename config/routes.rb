@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :workouts, except: %i[new edit]
+  resources :videos, except: %i[new edit]
   # RESTful routes
   resources :videos, only: %i[show update]
   # Users can only see specific video and update that video as watched.
