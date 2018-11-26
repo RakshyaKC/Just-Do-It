@@ -29,3 +29,9 @@ Video access
 YouTube API integration
 *** Search video 'fitness level' & 'time availability' yoga video
 *** Grab the second video url and display in video player.
+
+Process
+* Maybe use nested resources to get correct fitness level and time availability?
+ example: http://localhost:4741/videos/fitness/length
+* Or should I just make three resources for the three timelines and create a
+ many to many connections between them and user databases.
