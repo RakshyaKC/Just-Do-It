@@ -38,6 +38,3 @@ Process
  many to many connections between them and user databases.
 
  Commit:
- * Videos and workout controllers to belong to ApplicationController for now
- * Created custom actions in video controller to get videos with 3 time availability,
- each with two levels of fitness.
