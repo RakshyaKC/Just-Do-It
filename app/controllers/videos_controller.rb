@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class VideosController < ProtectedController
+class VideosController < ApplicationController
   before_action :set_video, only: %i[show update destroy]
 
   # GET /videos
@@ -38,6 +38,36 @@ class VideosController < ProtectedController
   # DELETE /videos/1
   def destroy
     @video.destroy
+  end
+
+  def thirty_min_all_levels_videos
+    @video = Video.where(length_in_min: '30', fitness: 'All levels')
+    render json: @video
+  end
+
+  def thirty_min_intermediate_videos
+    @video = Video.where(length_in_min: '30', fitness: 'Intermediate')
+    render json: @video
+  end
+
+  def fortyfive_min_all_levels_videos
+    @video = Video.where(length_in_min: '45', fitness: 'All levels')
+    render json: @video
+  end
+
+  def fortyfive_min_intermediate_videos
+    @video = Video.where(length_in_min: '45', fitness: 'Intermediate')
+    render json: @video
+  end
+
+  def sixty_min_all_levels_videos
+    @video = Video.where(length_in_min: '60', fitness: 'All levels')
+    render json: @video
+  end
+
+  def sixty_min_intermediate_videos
+    @video = Video.where(length_in_min: '60', fitness: 'Intermediate')
+    render json: @video
   end
 
   private
