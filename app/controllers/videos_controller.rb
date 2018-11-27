@@ -40,18 +40,45 @@ class VideosController < ApplicationController
     @video.destroy
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_video
-      @video = Video.find(params[:id])
-    end
+  def thirty_min_all_levels_videos
+    @video = Video.where(length_in_min: '30', fitness: 'All levels')
+    render json: @video
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def video_params
-<<<<<<< HEAD
-      params.require(:video).permit(:Fitness_level, :Time_length)
-=======
-      params.require(:video).permit(:title, :length_in_min, :url, :fitness)
->>>>>>> feature
-    end
+  def thirty_min_intermediate_videos
+    @video = Video.where(length_in_min: '30', fitness: 'Intermediate')
+    render json: @video
+  end
+
+  def fortyfive_min_all_levels_videos
+    @video = Video.where(length_in_min: '45', fitness: 'All levels')
+    render json: @video
+  end
+
+  def fortyfive_min_intermediate_videos
+    @video = Video.where(length_in_min: '45', fitness: 'Intermediate')
+    render json: @video
+  end
+
+  def sixty_min_all_levels_videos
+    @video = Video.where(length_in_min: '60', fitness: 'All levels')
+    render json: @video
+  end
+
+  def sixty_min_intermediate_videos
+    @video = Video.where(length_in_min: '60', fitness: 'Intermediate')
+    render json: @video
+  end
+
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_video
+    @video = Video.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def video_params
+    params.require(:video).permit(:title, :length_in_min, :url, :fitness)
+  end
 end

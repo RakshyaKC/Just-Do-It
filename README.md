@@ -10,16 +10,17 @@ API creation
 
 User authentication
 * Tied the built in user creation, sign in and sign out functionality to the client.
-*** Need to successfully change password.
+* User can successfully change password.
+* Videos and workout controllers to belong to ProtectedController
 
 User profile
-* User should be able to update their fitness level
+*** User should be able to update their fitness level
 
 Databases
 * Created videos database with columns title, length in minutes, fitness and url.
 * Created workout database with columns user_id and video_id.
 * Created a many to many relationship between users and videos through workouts.
-*** Add column fitness level to database users.
+* Add column fitness level to database users.
 
 Video access
 *** Filter videos based on fitness level
@@ -29,3 +30,11 @@ Video access
 YouTube API integration
 *** Search video 'fitness level' & 'time availability' yoga video
 *** Grab the second video url and display in video player.
+
+Process
+* Maybe use nested resources to get correct fitness level and time availability?
+ example: http://localhost:4741/videos/fitness/length
+* Or should I just make three resources for the three timelines and create a
+ many to many connections between them and user databases.
+
+ Commit:
