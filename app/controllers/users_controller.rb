@@ -46,6 +46,12 @@ class UsersController < ProtectedController
     end
   end
 
+  def destroy
+    session[:user_id] = nil
+    @user = User.find(params[:id])
+    @user.destroy
+  end
+
   private
 
   def user_creds
