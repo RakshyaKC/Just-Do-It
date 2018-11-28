@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ProtectedController
-  skip_before_action :authenticate, only: %i[signup signin]
-
+  skip_before_action :authenticate, only: %i[signup signin destroy]
   # POST '/sign-up'
   def signup
     user = User.create(user_creds)
@@ -46,17 +45,24 @@ class UsersController < ProtectedController
     end
   end
 
+  # PATCH '/change-fitness/:id'
+  def changefitness
+    if current_user.fitness
+  end
+
+  # DELETE '/destroy'
   def destroy
     session[:user_id] = nil
     @user = User.find(params[:id])
     @user.destroy
   end
 
+
   private
 
   def user_creds
     params.require(:credentials)
-          .permit(:email, :password, :password_confirmation)
+          .permit(:email, :password, :password_confirmation, :fitness)
   end
 
   def pw_creds
