@@ -47,16 +47,21 @@ class UsersController < ProtectedController
 
   # PATCH '/change-fitness/:id'
   def changefitness
-    if current_user.fitness
+    # if the old fitness
+    if (current_user.fitness = user_fit[:new]).blank? &&
+       current_user.save
+      head :no_content
+    else
+      head :bad_request
+    end
   end
 
   # DELETE '/destroy'
   def destroy
-    session[:user_id] = nil
     @user = User.find(params[:id])
     @user.destroy
+    head :no_content
   end
-
 
   private
 
@@ -67,6 +72,11 @@ class UsersController < ProtectedController
 
   def pw_creds
     params.require(:passwords)
+          .permit(:old, :new)
+  end
+
+  def user_fit
+    params.require(:fitness)
           .permit(:old, :new)
   end
 end
