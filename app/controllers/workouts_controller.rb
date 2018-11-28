@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class WorkoutsController < ProtectedController
-  before_action :set_workout, only: [:show, :update, :destroy]
+  before_action :set_workout, only: %i[show update destroy]
 
   # GET /workouts
   def index
@@ -39,13 +41,14 @@ class WorkoutsController < ProtectedController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_workout
-      @workout = Workout.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def workout_params
-      params.require(:workout).permit(:user_id, :video_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_workout
+    @workout = Workout.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def workout_params
+    params.require(:workout).permit(:user_id, :video_id)
+  end
 end
