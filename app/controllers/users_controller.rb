@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ProtectedController
-  skip_before_action :authenticate, only: %i[signup signin destroy]
+  skip_before_action :authenticate, only: %i[signup signin]
   # POST '/sign-up'
   def signup
     user = User.create(user_creds)
@@ -47,18 +47,15 @@ class UsersController < ProtectedController
 
   # PATCH '/change-fitness/:id'
   def changefitness
-    # if the old fitness
-    if (current_user.fitness = user_fit[:new]).blank? &&
-       current_user.save
-      head :no_content
-    else
-      head :bad_request
-    end
+    current_user.fitness = fitness_params[:fitness]
+    # user_creds[:fitness] === value being passed through ajax calls in the client side.
+    current_user.save
+    head :no_content
   end
 
   # DELETE '/destroy'
   def destroy
-    @user = User.find(params[:id])
+    @user = current_user
     @user.destroy
     head :no_content
   end
@@ -75,8 +72,7 @@ class UsersController < ProtectedController
           .permit(:old, :new)
   end
 
-  def user_fit
-    params.require(:fitness)
-          .permit(:old, :new)
+  def fitness_params
+    params.permit(:fitness)
   end
 end
