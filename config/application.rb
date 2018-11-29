@@ -38,7 +38,10 @@ module JustDoIt
     # Patient (call 'Patient.connection' to establish a connection)
     # and will not show the column names since not connected to database.
     # A call such as Patient.all is required to connect to the database.
-    #
+    config.action_dispatch.default_headers = {
+    'Access-Control-Allow-Origin' => 'https://rakshyakc.github.io',
+    'Access-Control-Request-Method' => %w{PUT PATCH DELETE GET POST OPTIONS}.join(',')
+    }
     # Overriding to  establish a connection to the database when in the console
     console do
       ActiveRecord::Base.connection
