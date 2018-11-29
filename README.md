@@ -38,11 +38,5 @@ Process
  many to many connections between them and user databases.
 
  11/28
-* Added destroy to user_controller allowed actions
-* Adding fitness as required param to users_controller (line 58)
-* Added :fitness on user_serializer.rb on line 4.
-* Added :fitness on user_login_serializer.rb on line 4.
-* Added (patch '/change-fitness' => 'users#changefitness') in routes.rb
-
-* Adding fitness patch method on users_controller
-*
+* Added fitness patch method on users_controller
+* Adding seeds.rb
