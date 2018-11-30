@@ -50,7 +50,8 @@ class UsersController < ProtectedController
     current_user.fitness = fitness_params[:fitness]
     # user_creds[:fitness] === value being passed through ajax calls in the client side.
     current_user.save
-    head :no_content
+    # send back json version of current_user using serializer class as below
+    render json: current_user, serializer: UserSerializer
   end
 
   # DELETE '/destroy'
