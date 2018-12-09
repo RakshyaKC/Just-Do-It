@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :invitations, only: %i[create]
   resources :workouts, except: %i[new edit]
   resources :videos, except: %i[new edit]
   # RESTful routes
