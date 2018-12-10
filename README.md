@@ -2,8 +2,12 @@ Just Do It Rails API
 
 SCOPE
 * Give user a new work out video based on their self assessed fitness level and time availability.
+
 Server address https://boiling-fjord-48869.herokuapp.com/
-Front end address https://rakshyakc.github.io/Just-do-it-client/
+Front end repo https://github.com/RakshyaKC/Just-do-it-client
+Live site https://rakshyakc.github.io/Just-do-it-client/
+
+ERD - https://i.imgur.com/1n0ymyE.jpg
 
 API creation
 * Rails API template downloaded
@@ -48,6 +52,7 @@ Process
  class_name property.
 * Enabled action mailer in config/application.rb by uncommenting line 11.
 * Enabled action mailer previews to test emails. => https://guides.rubyonrails.org/action_mailer_basics.html
+* https://i.imgur.com/DHVUTtL.png => Image of test email
 * Generated invitation mailer (rails generate mailer InvitationMailer)
 * In views, created invitation to website for user emails that don't exist in database.
 * In views, created invitation to workout video for user emails that exist in database.

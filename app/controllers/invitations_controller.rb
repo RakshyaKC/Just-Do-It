@@ -38,13 +38,20 @@ class InvitationsController < ProtectedController
         Invitation.create(inviter: @inviter, invitee: @invitee, video: @video)
       # puts @invitation
       # send_invitation to: params[:invitee], invitation: invitation
-      InvitationMailer.with(invitation: @invitation).invite_to_video.send_later
+      InvitationMailer
+        .with(invitation: @invitation)
+        .invite_to_video
+        .deliver_later
       # puts "(not really) sending an invitation to #{params[:invitee]}"
       render json: @invitation, status: :created
     else
       # send_introduction to: params[:invitee]
       # puts "(not really) sending an introduction to #{params[:invitee]}"
-      render json: @invitation.errors, status: :unprocessable_entity
+      InvitationMailer
+        .with(inviter: @inviter.email, invitee: params[:invitee])
+        .invite_to_video
+        .deliver_later
+      render json: 'User does not exist', status: :unprocessable_entity
     end
   end
 
